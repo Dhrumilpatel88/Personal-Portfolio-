@@ -35,7 +35,7 @@ export function ContactSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <span style={{ color: 'var(--color-red)' }}>//</span>
+          <span style={{ color: 'var(--color-red)' }}>{'//'}</span>
           Open Channel
         </motion.div>
 
