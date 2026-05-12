@@ -10,7 +10,7 @@ export function SectionHeader({ label, title }: Props) {
         className="font-mono text-[0.6rem] tracking-[0.3em] uppercase mb-3 flex items-center gap-3"
         style={{ color: 'var(--color-green)' }}
       >
-        <span style={{ color: 'var(--color-red)' }}>//</span>
+        <span style={{ color: 'var(--color-red)' }}>{'//'}</span>
         {label}
       </div>
       <h2
