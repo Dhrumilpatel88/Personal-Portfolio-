@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ─────────────────────────────────────── */
+:root {
+  --color-bg:       #050505;
+  --color-surface:  #101010;
+  --color-surface2: #181818;
+  --color-surface3: #222222;
+  --color-red:      #ff3b30;
+  --color-red2:     #cc2f26;
+  --color-green:    #00ff9c;
+  --color-gold:     #d4af37;
+  --color-white:    #f5f5f5;
+  --color-white2:   #aaaaaa;
+  --color-white3:   #555555;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+  /* cursor:none only on non-touch devices */
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
+
+::selection { background: var(--color-red); color: #fff; }
+
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-red), var(--color-green));
+}
+
+/* ── Section base ───────────────────────────────────────── */
+.section-base {
+  padding: 80px 5vw;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .section-base { padding: 56px 20px; }
+}
+
+/* ── Clipped button shape ───────────────────────────────── */
+.clip-angled {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+/* ── Glitch text effect ─────────────────────────────────── */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  pointer-events: none;
+}
+.glitch-text::before {
+  color: var(--color-red);
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  animation: glitchTop 6s infinite;
+  opacity: 0.7;
+}
+.glitch-text::after {
+  color: var(--color-green);
+  clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+  animation: glitchBot 6s infinite;
+  opacity: 0.5;
+}
+/* Disable glitch on mobile for performance */
+@media (max-width: 640px) {
+  .glitch-text::before,
+  .glitch-text::after { display: none; }
+}
+
+/* ── Scanlines overlay ───────────────────────────────────── */
+.scanlines {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9989;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px
+  );
+}
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes glitchTop {
+  0%,88%,100% { transform: translateX(0); clip-path: polygon(0 0,100% 0,100% 33%,0 33%); }
+  90%          { transform: translateX(-4px); clip-path: polygon(0 5%,100% 5%,100% 38%,0 38%); }
+  94%          { transform: translateX(3px); }
+}
+@keyframes glitchBot {
+  0%,91%,100% { transform: translateX(0); clip-path: polygon(0 66%,100% 66%,100% 100%,0 100%); }
+  93%          { transform: translateX(4px); clip-path: polygon(0 61%,100% 61%,100% 96%,0 96%); }
+  97%          { transform: translateX(-2px); }
+}
+@keyframes grainShift {
+  0%   { transform: translate(0,0); }
+  25%  { transform: translate(-2px,2px); }
+  50%  { transform: translate(2px,-1px); }
+  75%  { transform: translate(-1px,-2px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,156,0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(0,255,156,0); }
+}
+@keyframes ledScroll {
+  to { background-position: -300% 0; }
+}
+@keyframes fogMove {
+  0%   { transform: translateX(-8%); }
+  100% { transform: translateX(8%); }
+}
+@keyframes spotlightSwing {
+  0%   { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+@keyframes bootFadeIn {
+  to { opacity: 1; }
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Animation utility classes ───────────────────────────── */
+.animate-grain    { animation: grainShift 0.5s steps(2) infinite; }
+.animate-pulse-dot{ animation: pulseDot 2s ease-in-out infinite; }
+.animate-led      { animation: ledScroll 4s linear infinite; }
+.animate-fog      { animation: fogMove 20s linear infinite; }
+.animate-spotlight{ animation: spotlightSwing 9s ease-in-out infinite alternate; }
+.animate-blink    { animation: blink 0.7s steps(2) infinite; }
