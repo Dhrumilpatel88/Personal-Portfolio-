@@ -45,7 +45,7 @@ export function AboutSection() {
         {/* Text + Stats */}
         <div>
           {[
-            <>I'm a <strong className="text-white font-semibold">software developer and aspiring cybersecurity professional</strong> from Gandhinagar, Gujarat — fresh off a <span style={{ color: 'var(--color-gold)' }}>B.E. in Information Technology</span> with a CGPA of <span style={{ color: 'var(--color-green)' }}>8.6</span>.</>,
+            <>I&apos;m <strong className="text-white font-semibold">software developer and aspiring cybersecurity professional</strong> from Gandhinagar, Gujarat — fresh off a <span style={{ color: 'var(--color-gold)' }}>B.E. in Information Technology</span> with a CGPA of <span style={{ color: 'var(--color-green)' }}>8.6</span>.</>,
             <>Four internships across different stacks shaped me into a developer who thinks about <strong className="text-white font-semibold">architecture, performance, and security</strong> from day one — never as an afterthought.</>,
             <>I build things that work. I study systems to understand how they break. Both perspectives come with me to every commit.</>,
             <>Currently exploring the intersection of <span style={{ color: 'var(--color-red)' }}>secure systems design</span>, web application security, and full-stack engineering.</>,
